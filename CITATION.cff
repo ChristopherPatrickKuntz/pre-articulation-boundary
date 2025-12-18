@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+authors:
+  - family-names: "Kuntz"
+    given-names: "Christopher Patrick"
+    email: "christopher@cpk.solutions"
+title: "The Pre-Articulation Observability Boundary: A Structural Constraint on Language-Based AI Systems"
+type: article
+date-released: 2025-12-17
+keywords:
+  - ai-safety
+  - human-ai-interaction
+  - language-models
+  - phenomenology
+  - control-theory
+  - cognitive-science
+license: CC-BY-4.0

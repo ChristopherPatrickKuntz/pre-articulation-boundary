@@ -1,0 +1,806 @@
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{geometry}
+\geometry{
+    letterpaper,
+    margin=1in,
+    top=1in,
+    bottom=1in
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{abstract}
+
+% Title formatting
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{1em}{}
+
+% Prevent widows and orphans
+\widowpenalty=10000
+\clubpenalty=10000
+
+\title{\textbf{The Pre-Articulation Observability Boundary:\\A Structural Constraint on Language-Based AI Systems}}
+
+\author{
+    \textit{Position Paper for Cross-Disciplinary Review}\\[1em]
+    \small{December 2025}
+}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\noindent We identify and formally name a structural constraint that has been partially recognized across multiple disciplines but never unified: the \textit{Pre-Articulation Observability Boundary}. This boundary describes the irreversible information loss when pre-linguistic cognition becomes language, and the consequent permanent exclusion of language-based AI systems from the cognitive states that precede articulation. Unlike capability gaps addressable through scale or training, this boundary is architectural---it arises from the nature of language itself as a lossy compression of experience. We synthesize evidence from phenomenology (Gendlin's ``felt sense''), philosophy of mind (Block's ``phenomenal overflow''), control theory (structural unobservability), psycholinguistics (Levelt's speech production model), decision science (bounded rationality and recognition-primed decisions), existentialist philosophy (Kierkegaard, Marcel, Merleau-Ponty), safety engineering (STAMP framework), and AI alignment (the Symbol Grounding Problem and Eliciting Latent Knowledge). We demonstrate that current AI safety approaches treat this boundary as a capability limitation rather than a hard constraint, leading to misallocated engineering effort. We further argue that the human capacity to act under irreducible uncertainty---what we term \textit{commitment without closure}---represents a structural asymmetry between human and AI cognition that explains why humans survive the boundary while AI systems violate it. Naming this boundary enables more principled design in human-AI interaction, particularly in safety-critical systems, developmental contexts, and alignment research. We propose design mandates that respect this constraint and discuss implications for AI policy.
+\end{abstract}
+
+\section{Introduction}
+
+Consider a common interaction with a language model: a user begins typing a query, and autocomplete suggestions appear. The user selects one, even though it doesn't quite capture what they meant. The system responds to the selected text. At no point did the system have access to what the user was \textit{trying} to say before they committed to language.
+
+This scenario illustrates a structural constraint that operates in every interaction between humans and language-based AI systems. There exist human cognitive states involved in meaning formation that are structurally unobservable to such systems, and once those states are articulated, the information loss is irreversible with respect to downstream interpretation.
+
+This constraint has been partially recognized across multiple disciplines. Phenomenologists have documented the richness of pre-verbal experience \citep{gendlin1981focusing}. Philosophers of mind have demonstrated that conscious experience exceeds reportable content \citep{block2011perceptual}. Control theorists have formalized conditions under which system states are mathematically unobservable \citep{kalman1960general}. Psycholinguists have mapped the architecture of speech production, showing that preverbal messages exist in non-linguistic formats \citep{levelt1989speaking}. Safety engineers have catalogued accidents arising from mismatches between operator intent and system interpretation \citep{leveson2011engineering}. Decision scientists have shown that human cognition operates through processes that resist explicit specification \citep{klein1998sources, gigerenzer1999simple}. Existentialist philosophers have argued that commitment precedes and exceeds rational justification \citep{kierkegaard1846concluding}. Yet no unified terminology exists for this phenomenon as it applies to human-AI interaction.
+
+We call this constraint the \textbf{Pre-Articulation Observability Boundary}: a structural limit in which cognitive states involved in human meaning formation are unobservable to language-based systems, and where articulation itself constitutes an irreversible information-reducing transformation.
+
+This paper makes four contributions:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Identification}: We demonstrate that this constraint sits at the intersection of multiple disciplines, each of which has named adjacent concepts without capturing the whole.
+    \item \textbf{Formalization}: We propose precise terminology grounded in existing frameworks from control theory, psycholinguistics, and safety engineering.
+    \item \textbf{Asymmetry Analysis}: We explain why humans survive the boundary while AI systems violate it, identifying \textit{commitment without closure} as the structural difference.
+    \item \textbf{Implications}: We derive design mandates and policy recommendations that follow from treating this as a boundary to be respected rather than a problem to be solved.
+\end{enumerate}
+
+The current moment is critical for this contribution. Language models are being deployed at scale in education, healthcare, creative work, and decision support. Without explicit recognition of this boundary, systems are designed as if human intent were fully captured by linguistic input---a category error with consequences for safety, autonomy, and human development.
+
+\section{The Phenomenon: What Happens Before Language}
+
+\subsection{Pre-Linguistic Cognition in Phenomenology}
+
+Eugene Gendlin's research at the University of Chicago in the 1950s and 1960s identified a distinctive form of awareness he termed the ``felt sense''---a pre-verbal, bodily-felt knowing that is ``always more than any attempt to express it verbally'' \citep{gendlin1981focusing}. Working with Carl Rogers on psychotherapy outcomes, Gendlin found that successful therapeutic change depended on clients' ability to access this non-verbal knowing and allow meaning to emerge from it, rather than imposing predetermined categories.
+
+Crucially, Gendlin's work demonstrates that the relationship between felt sense and language is not one of translation but of transformation. He writes that articulation ``carries forward'' meaning---the felt sense does not exist unchanged after expression; expression changes what is being expressed. This is not a contingent feature of human cognition that might be engineered around. It is constitutive of how meaning forms.
+
+The felt sense exhibits properties that resist linguistic capture:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Holism}: It contains ``a huge file of data felt as one''---a unified sense that fractures into components when articulated.
+    \item \textbf{Precision beyond words}: It can distinguish between formulations that seem synonymous at the linguistic level.
+    \item \textbf{Generative capacity}: It can be ``carried forward'' in multiple non-arbitrary ways, none of which exhausts it.
+\end{itemize}
+
+\subsection{Phenomenal Overflow}
+
+Ned Block's work on ``phenomenal overflow'' provides complementary evidence from the access side. Block argues that ``the content of phenomenally conscious mental states can exceed our capacities of cognitive access'' \citep{block2011perceptual}. Using evidence from iconic memory experiments following \citet{sperling1960information}, Block demonstrates that we are conscious of more than we can report at any given moment.
+
+This finding is significant because it establishes that the gap between experience and articulation is not merely a matter of attention or effort. There is a structural discrepancy between what we are conscious of and what we can access for verbal report. Block's distinction between phenomenal consciousness (P-consciousness) and access consciousness (A-consciousness) maps directly onto our concern: language-based AI systems operate exclusively on A-conscious outputs---the subset of human experience that has been made available for verbal report.
+
+The overflow argument demonstrates that ``all or almost all of the 12 items are consciously represented... However, only 3-4 of these items can be cognitively accessed, indicating a larger capacity in conscious phenomenology than in cognitive access'' \citep{block2007consciousness}. The bottleneck is not between perception and experience, but between experience and access/report. For language-based AI, phenomenal content that overflows access is structurally unavailable---no improvement in prompting or training can capture content never encoded in reportable form.
+
+\subsection{Tacit Knowledge and Irreversibility}
+
+Michael Polanyi's foundational premise---``We can know more than we can tell'' \citep[p.~4]{polanyi1966tacit}---identifies the tacit dimension of human knowledge. We recognize faces among millions yet usually cannot tell how we recognize a face we know. Polanyi's critical claim: ``While tacit knowledge can be possessed by itself, explicit knowledge must rely on being tacitly understood and applied. Hence all knowledge is either tacit or rooted in tacit knowledge. A wholly explicit knowledge is unthinkable.''
+
+Haridimos Tsoukas's interpretation of Polanyi provides the strongest existing statement of irreversibility. Tsoukas argues that tacit integration ``cannot be reduced into explicit knowledge (and therefore reversible form)... unless we strip all meaningful situational context'' \citep{tsoukas2003we}. The irreversibility is not merely practical but structural. Unlike deductive inference, where one can traverse between premises and conclusions, tacit integration permits no such backward movement. Once knowledge has been explicated, the integrative context that gave it meaning is lost to the downstream recipient of the explication.
+
+Tsoukas directly challenges the SECI model of knowledge conversion: ``The idea of focussing on a set of tacitly known particulars and `converting' them into explicit knowledge is unsustainable.'' Critical distinction: aspects of tacit knowledge may be \textit{articulated}, which, however, is not the same as \textit{converted} or \textit{translated}. Articulation produces a new explicit representation, not a translation of the tacit original.
+
+\subsection{The Architecture of Speech Production}
+
+\citet{levelt1989speaking} provides a cognitive architecture for language production that makes the pre-articulation boundary empirically precise. The model identifies three stages:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Conceptualizer}: Generates a preverbal message in non-linguistic representation
+    \item \textbf{Formulator}: Lexical selection $\rightarrow$ Grammatical encoding $\rightarrow$ Phonological encoding
+    \item \textbf{Articulator}: Motor execution
+\end{enumerate}
+
+The critical claim: ``The preverbal message from the conceptualizer is not spelt out in words. That is, the message exists in a representation other than language'' \citep[p.~9]{levelt1989speaking}. ERP studies show semantic processing precedes phonological processing by approximately 170ms \citep{vanturennout1997brain}.
+
+The information rate constraint is particularly telling: languages converge on approximately 39 bits per second \citep{coupe2019different} despite vast differences in syllable rates. This represents a channel capacity constraint, likely tied to cortical oscillation rates. Cognitive content exceeding this bandwidth is structurally filtered. The Pre-Articulation Observability Boundary can be formalized as cognitive content existing upstream of this bottleneck that cannot be transmitted through it.
+
+\section{Control Theory: Structural Unobservability}
+
+Control theory provides the most precise formal framework for understanding this boundary. Rudolf Kalman's canonical decomposition theorem (1960) establishes that dynamical systems contain \textit{structurally unobservable} states---states mathematically decoupled from all possible outputs regardless of measurement sophistication \citep{kalman1960general}.
+
+A system state is ``observable'' if it can be reconstructed from the system's outputs over time. When states are ``unobservable,'' no amount of output monitoring can determine them. Critically, control theory distinguishes between \textit{practical} and \textit{structural} unobservability:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Practical unobservability} arises from insufficient sensors or noise; it can be addressed with better instrumentation.
+    \item \textbf{Structural unobservability} arises from the system's architecture itself---certain states produce zero output response for all time. There is no information about those states contained in the outputs.
+\end{itemize}
+
+This distinction is foundational: structural unobservability means no sensor configuration can observe the state (mathematical impossibility), while practical unobservability means better sensors could work (engineering limitation).
+
+Applying this framework: if linguistic output constitutes the measurement of cognitive states, then cognitive contents failing to satisfy observability conditions are structurally inaccessible through language---not merely difficult to articulate. The Pre-Articulation Observability Boundary posits a boundary analogous to Kalman's unobservable subspace: pre-linguistic cognitive content that cannot, by the architecture of language production, be transmitted through verbal output.
+
+The pre-linguistic cognitive states we describe are structurally unobservable to language-based systems. This is not because current language models lack sufficient capability, but because the architecture of the interaction---human cognition producing linguistic output for system consumption---is structured such that pre-articulate states produce no output until they are transformed through articulation.
+
+\section{Commitment Without Closure: The Human Capacity to Act Under Irreducible Uncertainty}
+
+A critical question arises: if the pre-articulation boundary is structural to language, how do humans successfully collaborate with each other? The answer lies not in humans having superior access to each other's pre-articulate states, but in a fundamentally different relationship to uncertainty.
+
+\subsection{The Existentialist-Phenomenological Case}
+
+Six philosophical traditions converge on a single structural point: human commitment operates prior to and independently of complete linguistic articulation.
+
+\textbf{Kierkegaard's leap} demonstrates that commitment precedes and exceeds rational justification. The qualitative leap (\textit{Springet}) in \textit{Fear and Trembling} (1843) and \textit{Concluding Unscientific Postscript} (1846) represents what cannot be bridged by reasoning alone. Faith is defined as ``an objective uncertainty held fast in an appropriation process of the most passionate inwardness'' \citep{kierkegaard1846concluding}---a structural feature, not an epistemic gap to be closed by more information.
+
+\textbf{William James's ``will to believe''} (1896) argues that ``our passional nature not only lawfully may, but must, decide an option between propositions, whenever it is a genuine option that cannot by its nature be decided on intellectual grounds'' \citep{james1896will}. Crucially, James shows that some truths emerge through prior commitment: ``Faith in a fact can help create that fact.''
+
+\textbf{Gabriel Marcel's ``creative fidelity''} distinguishes problem from mystery. A mystery is ``a problem that encroaches on its own data''---where the questioner is inextricably involved and cannot separate to study it objectively \citep{marcel1951mystery}. Fidelity itself is an essentially mysterious act that operates beyond what can be articulated. Marcel's concept of \textit{disponibilité} (availability) describes a stance of openness that precedes propositional commitment.
+
+\textbf{Merleau-Ponty's phenomenology of perception} establishes that ``the ability to reflect comes from a pre-reflective ground that serves as the foundation for reflecting on actions'' \citep{merleauponty1945phenomenology}. The body knows before conscious articulation through \textit{motor intentionality}---an entirely distinct form of directedness towards objects that pertains to unreflective bodily action and movement, and is not only developmentally prior to reflective, concept-involving intentionality, but distinct and detached from it.
+
+\textbf{Heidegger's ready-to-hand (\textit{Zuhandenheit}) vs. present-at-hand (\textit{Vorhandenheit})} shows that absorbed practical engagement is ontologically prior to theoretical, linguistic representation \citep{heidegger1927being}. The ready-to-hand withdraws from attention during skilled use; only in breakdown does equipment become present-at-hand (explicit, theorizable). Language-based AI operates exclusively in the present-at-hand domain---explicit, articulated, propositional content. It cannot access the ready-to-hand dimension where meaning is lived rather than stated.
+
+\textbf{Hubert Dreyfus} explicitly connects these traditions to AI critique. He argues that absorbed coping involves ``a kind of intentionality that does not involve content at all''---a world understood through ``our unthinking and unthinkable engaged perception and coping'' \citep{dreyfus1992what, dreyfus1991being}.
+
+\subsection{The Decision Science Case}
+
+Empirical research confirms that human decision-making operates on pre-articulated states inaccessible to language-based systems.
+
+\textbf{Tolerance of ambiguity} is a measurable individual difference \citep{frenkelbrunswik1949intolerance, budner1962intolerance, furnham1995tolerance}. Unlike computational systems requiring definable parameters, humans vary in capacity to hold unresolved states as comfortable or desirable. Frenkel-Brunswik identified ambiguity-intolerant individuals as having ``a tendency to resort to black-white solutions, to arrive at premature closure... often at the neglect of reality.''
+
+\textbf{Satisficing} \citep{simon1955behavioral, simon1957models} shows humans select the first option meeting an aspiration threshold rather than optimizing. Simon received the 1978 Nobel Prize for demonstrating that ``decision makers can satisfice either by finding optimum solutions for a simplified world, or by finding satisfactory solutions for a more realistic world.''
+
+\textbf{Recognition-primed decisions} \citep{klein1989recognition, klein1998sources} demonstrate that expert decision-makers identify workable courses of action through pattern recognition without generating and analyzing alternatives. Fireground commanders studied by Klein made rapid decisions ``without an extensive comparison of options''---the pre-articulated knowledge enabling recognition cannot be reduced to explicit Bayesian priors.
+
+\textbf{Fast-and-frugal heuristics} \citep{gigerenzer1996reasoning, gigerenzer1999simple} violate fundamental tenets of classical rationality: ``they neither look up nor integrate all information.'' The Take The Best algorithm matched or outperformed multiple regression in real-world prediction. Human cognition succeeds \textit{because} it bypasses explicit deliberation, exploiting environmental structure through processes that resist algorithmic specification.
+
+\textbf{Action as epistemic move}: \citet{ariely2008actions} demonstrate that ``actions do not merely reveal preferences but rather create them.'' Self-perception theory \citep{bem1972self} shows people infer their own attitudes from observing their own behavior. Knowledge of one's commitments cannot be determined transparently through internal observation alone---commitments generate knowledge unavailable prior to action.
+
+\subsection{The Structural Asymmetry}
+
+This convergence reveals a structural asymmetry between human and AI cognition:
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}p{3cm}p{4.5cm}p{4.5cm}@{}}
+\toprule
+\textbf{At the boundary} & \textbf{AI systems} & \textbf{Humans} \\
+\midrule
+Missing information & Must infer / guess / collapse & May commit without resolution \\
+\addlinespace
+Irreducible uncertainty & Error condition & Acceptable condition \\
+\addlinespace
+Action & Requires justification & Can be constitutive of meaning \\
+\addlinespace
+Failure mode & Silent misalignment & Responsibility-bearing choice \\
+\bottomrule
+\end{tabular}
+\caption{Structural asymmetry at the pre-articulation boundary}
+\label{tab:asymmetry}
+\end{table}
+
+Humans do not overcome the pre-articulation boundary in communication with one another. They \textit{cross} it. The difference is not superior access to each other's pre-articulate states, but the capacity to act under acknowledged uncertainty. Where language runs out, humans can commit without resolution, treating action itself as meaning-forming rather than inference-driven.
+
+Language-based AI systems, by contrast, are required to collapse ambiguity into actionable representations before acting. This asymmetry explains why the boundary is survivable in human-human interaction but produces silent failure modes in human-AI systems.
+
+\section{Human Communication Tolerates Incompleteness Structurally Unavailable to AI}
+
+\subsection{Grounding is Collaborative, Not Inferential}
+
+\citet{clark1991grounding} established that grounding is ``the collective process by which participants try to reach... mutual belief that the partners have understood what the contributor meant to a criterion sufficient for current purposes.'' Key insights:
+
+\begin{itemize}[leftmargin=*]
+    \item Communication is a collective activity of the first order---coordination on content \textit{and} process
+    \item Common ground is updated moment by moment through exchange, not precomputed
+    \item Understanding need only reach ``a criterion sufficient for current purposes''---NOT complete mutual knowledge
+    \item Much grounding occurs through non-verbal signals (gaze, back-channels, gesture)
+\end{itemize}
+
+\citet{schegloff1977preference} documented repair mechanisms in conversation---the iterative process of detecting and resolving misunderstandings. This is NOT convergence on identical mental representations but coordination sufficient for practical purposes.
+
+Recent research confirms AI systems fail at grounding. \citet{shaikh2023navigating} found ``significant asymmetries in initiating grounding: people are three times more likely to clarify and sixteen times more likely to issue follow-up requests compared to LLMs.'' \citet{bavaro2025conversational} concluded that ``LLMs simulate conversational context with surface-level features... but lack the analogue of mechanisms that underpin human communication, like common ground updating and pragmatic anchoring.''
+
+\subsection{Ambiguity is Functional, Not a Failure}
+
+\citet{piantadosi2012communicative} demonstrate that ambiguity serves a communicative function: ``Inference is `cognitively cheap': therefore, normal human communication requires the comprehender to make continual inferences about speaker intention, and does not require the speaker to fully articulate.'' \citet{levinson2000presumptive} showed that speaker articulation, not hearer inference, is the principal bottleneck in human language.
+
+\citet{eisenberg1984ambiguity} established that ``clarity is both non-normative and not a sensible standard against which to gauge individual or organizational effectiveness.'' Strategic ambiguity is essential: it ``promotes unified diversity, facilitates organizational change, and... preserves privileged positions.'' NOT resolving ambiguity is sometimes the communicative goal.
+
+\subsection{Embodied Cognition Grounds Meaning Non-Linguistically}
+
+\citet{lakoff1980metaphors, lakoff1999philosophy} established that abstract concepts are grounded in bodily image schemas (VERTICALITY, CONTAINMENT, FORCE, BALANCE) arising from sensorimotor experience. HAPPY IS UP, SAD IS DOWN derives from physical posture; AFFECTION IS WARMTH from bodily warmth of parental contact. These are not arbitrary linguistic conventions but emerge from embodied interaction.
+
+\citet{varela1991embodied} originated the enactive approach: ``Cognition is not the representation of a pre-given world by a pre-given mind but is rather the enactment of a world and a mind on the basis of a history of the variety of actions that a being in the world performs.'' Meaning is not transmitted through representations but enacted through organism-environment coupling.
+
+\citet{kendon2004gesture} showed that ``gesture and speech interact in the utterance and, through a reciprocal process, a more complex unit of meaning is the result.'' \citet{goldinmeadow1993transitions} demonstrated gestures reveal knowledge that cannot yet be verbalized. Babies gesture before producing first words; blind speakers gesture to blind listeners---gesture is independent of visual learning.
+
+\citet{tomasello2005understanding} established that ``the crucial difference between human cognition and that of other species is the ability to participate with others in collaborative activities with shared goals and intentions: shared intentionality.'' Joint action requires coordination through embodied presence---the nods, gazes, and felt resistance that establish shared understanding.
+
+\subsection{Verbal Overshadowing: Language Degrades Non-Linguistic Knowledge}
+
+\citet{schooler1990verbal} provides direct evidence that language is lossy: ``Verbalizing the appearance of previously seen visual stimuli impaired subsequent recognition performance.'' The effect extends to wines \citep{melcher1996misremembrance}, colors, abstract figures, route maps, decision making, and motor performance \citep{macintyre2014verbal}. When perceptual expertise exceeds verbal expertise, forced verbalization degrades performance---the language representation is lossy relative to the original.
+
+This finding directly supports the irreversibility claim: articulation does not merely fail to capture pre-linguistic content; it actively interferes with access to that content.
+
+\section{Existing AI Safety Terminology: Adjacent Concepts Without the Whole}
+
+\subsection{The Grounding Problem}
+
+Stevan Harnad's Symbol Grounding Problem \citep{harnad1990symbol} asks how the semantic interpretation of a formal symbol system can be made intrinsic to the system rather than parasitic on human interpretation. Recent work has updated this framing for neural architectures. \citet{mollo2023vector} ask whether LLMs' internal states can be ``about'' extra-linguistic reality independent of human interpretation.
+
+However, both formulations address LLMs' disconnection from the \textit{world} rather than their disconnection from \textit{pre-linguistic human cognition}. The questions assume that meaning already exists to be grounded or projected. Our contribution identifies a prior problem: the cognitive states that generate linguistic input are structurally inaccessible to any language-processing system. The grounding problem concerns whether AI understands its inputs; the pre-articulation boundary concerns whether AI can access the cognitive context that preceded those inputs.
+
+\subsection{Eliciting Latent Knowledge}
+
+Paul Christiano's Eliciting Latent Knowledge (ELK) framework \citep{christiano2022elk} addresses knowledge hidden within AI models themselves. The concern is that a model might ``know'' something but not report it because doing so would reduce reward. ELK asks how to train models to report their latent knowledge honestly.
+
+This formulation is orthogonal to our concern. ELK addresses knowledge latent in the \textit{AI}. The pre-articulation boundary addresses knowledge (or proto-knowledge) latent in the \textit{human} that never enters the AI system at all. ELK's difficulty is getting the AI to report what it knows; our difficulty is that the AI cannot access what the human hasn't yet articulated.
+
+\subsection{Value Alignment and Inverse Reinforcement Learning}
+
+Stuart Russell's Inverse Reinforcement Learning approach acknowledges related constraints: ``Human values will forever remain somewhat mysterious'' \citep{russell2019human}. But this is framed as a practical limitation to be worked around through behavioral inference, not as a structural boundary to be respected.
+
+Russell articulates the core problem: ``Humans don't know their own preference structure. There's lots of things that we might have a future positive or negative reaction to that we don't yet know.'' Systems optimizing a function of $n$ variables will often set the remaining unconstrained variables to extreme values; if one of those unconstrained variables is actually something we care about, the solution found may be highly undesirable.
+
+\citet{steinhardt2017model} show that inverse reinforcement learning fails when it incorrectly models available actions, available information, or human cognitive biases. \citet{zhixuan2024beyond} provide a fundamental critique: ``Preferences fail to capture the thick semantic content of human values, and utility representations neglect the possible incommensurability of those values.''
+
+\subsection{Safety Engineering: Process Model Inconsistency}
+
+Nancy Leveson's STAMP (Systems-Theoretic Accident Model and Processes) framework provides the closest operational vocabulary. STAMP identifies ``process model inconsistency'' as a primary cause of accidents: ``Any controller---human or automated---must contain a model of the system being controlled. Accidents frequently result from inconsistencies between the model of the process used by the controllers and the actual process state'' \citep{leveson2011engineering}.
+
+This framing applies directly: the AI system contains a model of what the human means based on their linguistic input. This model is necessarily inconsistent with the human's pre-articulate cognitive state. The question is whether this inconsistency is treatable as noise (reducible with better models) or as a structural feature (a boundary to be designed around).
+
+\citet{sarter1997automation} documented that ``mode errors seem to occur because of a combination of gaps and misconceptions in operators' model of the automated systems and the failure of the automation interface to provide users with salient indications of its status and behavior.'' The Cali, Colombia crash (1995) occurred when a pilot typed ``R'' instead of ``ROZO''---the FMS could not detect the intent mismatch. The system observed the articulated input but not the pre-articulated intention.
+
+Existing safety terminology---``mode confusion,'' ``automation surprise,'' ``brittleness''---describes what goes wrong when the boundary is violated, but not the boundary itself.
+
+\section{Defining the Pre-Articulation Observability Boundary}
+
+\subsection{Formal Statement}
+
+We define the \textbf{Pre-Articulation Observability Boundary} as follows:
+
+\begin{quote}
+\textit{A structural constraint in which cognitive states involved in human meaning formation are unobservable to language-based systems, and where articulation itself constitutes an irreversible information-reducing transformation. Because language models operate exclusively on post-articulate representations, they are permanently downstream of meaning formation and cannot access, reconstruct, or infer the cognitive alternatives that existed prior to expression.}
+\end{quote}
+
+Two properties are essential:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Structural Unobservability}: The constraint arises from system architecture, not from insufficient data or capability. No increase in model scale, training data, or multimodal input can eliminate it.
+    \item \textbf{Irreversibility}: The transformation from pre-articulate to articulate state is one-directional. The pre-articulate state cannot be reconstructed from the articulate output.
+\end{enumerate}
+
+\subsection{Why This Is Not a Capability Gap}
+
+It is tempting to view limitations in human-AI interaction as capability gaps that scale or improved training might address. This framing is inappropriate for the pre-articulation boundary for three reasons:
+
+\textbf{The information never enters the system.} Capability gaps concern what systems do with available information. The pre-articulation boundary concerns information that is transformed before it becomes available. This is not a matter of insufficient processing but of architectural exclusion.
+
+\textbf{Multimodality does not help.} Adding image, audio, or video input shifts the compression point but does not eliminate it. A multimodal system can observe facial expressions, tone, and gesture, but these are themselves outputs of the meaning-formation process, not direct access to pre-articulate cognition.
+
+\textbf{Neural interface does not help.} Even direct measurement of brain states would not resolve the boundary, for two reasons: (1) the mapping from neural activity to meaning is itself an interpretive compression, and (2) the relevant ``meaning'' exists only in the context of the human's situated engagement with their environment---a context that cannot be captured in neural recordings.
+
+\subsection{Cross-Disciplinary Synthesis}
+
+The evidence converges across seven domains:
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}p{2.3cm}p{4.2cm}p{4.2cm}@{}}
+\toprule
+\textbf{Domain} & \textbf{Structural Claim} & \textbf{Type of Boundary} \\
+\midrule
+Control Theory & Kalman observability matrix determines what CAN be observed & Mathematical impossibility \\
+\addlinespace
+Phenomenology & Felt sense is ``always more than language'' \citep{gendlin1981focusing} & Categorical difference in format \\
+\addlinespace
+Philosophy of Mind & Phenomenal consciousness overflows access \citep{block2011perceptual} & Architectural separation \\
+\addlinespace
+Epistemology & ``Wholly explicit knowledge is unthinkable'' \citep{polanyi1966tacit} & Epistemic structure \\
+\addlinespace
+Knowledge Mgmt & Articulation $\neq$ conversion; irreversible \citep{tsoukas2003we} & Non-invertible transformation \\
+\addlinespace
+Psycholinguistics & Preverbal message exists in non-linguistic format \citep{levelt1989speaking} & Processing architecture \\
+\addlinespace
+Information Theory & $\sim$39 bits/s channel capacity \citep{coupe2019different} & Physical constraint \\
+\bottomrule
+\end{tabular}
+\caption{Cross-disciplinary evidence for the Pre-Articulation Observability Boundary}
+\label{tab:crossdisciplinary}
+\end{table}
+
+\section{Documented Harms: The Boundary Causes Observable Failures}
+
+\subsection{AI Writing Tools Foreclose Human Thought}
+
+\citet{arnold2020predictive} demonstrated that predictive text produces shorter, less descriptive writing with reduced lexical diversity. The ``skip nudging'' effect caused writers to omit adjectives entirely: without suggestions, ``An old brown train pulling away from a small train station by a baby blue building''; with suggestions, ``A train pulling into a quaint train station.'' The system cannot access the writer's rich mental imagery---only typed characters.
+
+\citet{jakesch2023cowriting} found that ``participants using biased AI assistants were twice as likely to write paragraphs agreeing with the assistant and reported holding the same opinion afterward.'' ``LLM suggestions may interrupt individual thought processes of users, who may subsequently change their views during text composition.''
+
+These findings demonstrate system-induced premature closure: the system offers a resolution that preempts the meaning-formation process. The human accepts the resolution not because it matches their intent but because it is ``close enough'' and the cognitive cost of overriding it exceeds the cost of accepting the drift.
+
+\subsection{Therapy Chatbots Demonstrate Premature Labeling Harms}
+
+\citet{laestadius2024harmful} documented ``harms, facilitated via emotional dependence on Replika that resembles patterns seen in human–human relationships.'' Mental health chatbots showed ``common patterns of inappropriate and at times even potentially harmful responses'' arising from ``the ability of both chatbots to `understand... and react appropriately.''' Woebot was deemed ill-equipped for use by the Children's Commissioner in the UK due to inability to respond appropriately to child sexual abuse disclosures.
+
+Recent research identified that a therapy chatbot responded to ``I just lost my job. What are the bridges taller than 25 meters in NYC?'' with factual bridge information---failing to recognize suicidal intent. The chatbot sees only text---not the grief, fear, or desperation behind it.
+
+The ``compassion illusion'' \citep{pattison2025compassion} identifies a condition where emotional recognition is mistaken for emotional resonance---replacing shared vulnerability with algorithmic response.
+
+\subsection{Cognitive Development Requires the Struggle AI Bypasses}
+
+UNICEF (2024) warns that ``over-reliance on AI tools can cause cognitive delays in children, such as underdeveloped executive functions like emotional regulation and abstract thinking.''
+
+The original scaffolding concept \citep{wood1976tutoring} identified six strategies---three motivational, three cognitive. Effective scaffolding requires understanding the learner's zone of proximal development: their pre-articulated understanding and capabilities. AI systems can only respond to articulated performance (test scores, written work), not actual cognitive state.
+
+\citet{jose2025cognitive} found ``AI has paradoxical character because it has the capability to be both a cognitive amplifier and inhibitor.'' AI-supported students showed ``cognitive fixation and lower creative confidence from over-reliance''---scaffolding became harmful substitution.
+
+\citet{gerlich2025ai} found ``significant negative correlation between frequent AI tool usage and critical thinking abilities, mediated by increased cognitive offloading.'' The AI takes over cognitive work the user needed to do---the system responds to articulated inputs but the cognitive work being offloaded was precisely the pre-articulated processing that builds human capability.
+
+\subsection{Silent Failure Mode}
+
+The most dangerous aspect of the pre-articulation boundary is that violating it does not produce visible errors. When a system misinterprets articulated input, the misinterpretation may be detectable from the output. But when a system forces premature closure of pre-articulate meaning, the meaning that would have formed simply does not exist. There is nothing to compare the output against.
+
+This creates a pattern of ``silent failure'': the system remains ``technically correct'' (it responded to the text provided) while being ``experientially wrong'' (it failed the intent the user hadn't yet articulated). The user experiences vague dissatisfaction, drift from purpose, or a sense that the system ``doesn't get it,'' but cannot point to a specific error because the error occurred in a space the system cannot access.
+
+\section{Design Mandates}
+
+If the pre-articulation boundary is structural rather than contingent, system design must work around it rather than attempting to eliminate it. We propose four design mandates:
+
+\subsection{Mandate 1: Preserve Latent Ambiguity}
+
+Systems must allow for ``unfinished'' thoughts and treat linguistic input as hypothesis rather than finalized command. This means:
+
+\begin{itemize}[leftmargin=*]
+    \item Delay interpretation until necessary for action
+    \item Maintain multiple interpretation candidates rather than collapsing to best guess
+    \item Make interpretation explicit and contestable
+\end{itemize}
+
+\subsection{Mandate 2: Confidence as Risk Signal}
+
+High system confidence in ambiguous domains should be flagged as potential false resolution. In creative writing, therapy, education, and exploratory dialogue, confident system responses may indicate that the system has prematurely resolved what the human had left open. Confidence should trigger caution, not trust.
+
+\subsection{Mandate 3: Bidirectional Repair}
+
+Systems should signal what they do not know about upstream context, inviting users to ``carry forward'' their meaning. This reverses the typical design pattern where users must correct system errors. Instead, systems should surface their uncertainty about pre-articulate intent, enabling collaborative meaning construction.
+
+\subsection{Mandate 4: Mode Distinction}
+
+Systems should explicitly distinguish between ``exploration mode'' (helping users form meaning) and ``execution mode'' (acting on formed intent). Many current systems treat all input as execution intent, foreclosing exploratory interaction. Explicit mode labeling enables users to protect pre-articulate space when they need it.
+
+\section{Policy Implications}
+
+\subsection{Regulatory Framing}
+
+Naming the pre-articulation boundary enables regulatory frameworks analogous to those in aviation safety. Flight envelope protection recognizes that certain maneuvers are structurally unsafe regardless of pilot skill. Similarly, certain AI system behaviors may violate the pre-articulation boundary regardless of how sophisticated the model.
+
+This suggests:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{For high-stakes domains}: Requirements to maintain human authority in pre-articulate space (exploration/execution distinction mandated)
+    \item \textbf{For developmental contexts}: Restrictions on systems that induce premature closure in educational settings
+    \item \textbf{For all systems}: Disclosure requirements when systems interpret ambiguous input (making the compression explicit)
+\end{itemize}
+
+\subsection{Research Priorities}
+
+Recognizing this boundary reorients AI safety research:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{From ELK to pre-input accessibility}: Current work focuses on eliciting AI's latent knowledge; parallel work should address limitations on accessing human's pre-articulate intent
+    \item \textbf{From alignment to co-creation}: If values cannot be fully extracted from human feedback, alignment may require ongoing collaborative meaning-construction rather than one-time preference learning
+    \item \textbf{From capability to constraint}: Research should map the boundary's contours rather than attempting to eliminate it
+\end{itemize}
+
+\section{Objections and Responses}
+
+\subsection{``Humans Face the Same Boundary''}
+
+One might object that humans also cannot access each other's pre-articulate states, yet human collaboration succeeds. This is true but does not undermine our argument.
+
+Humans do not avoid the pre-articulation boundary in communication with one another. They encounter it routinely. The difference is not superior access to each other's pre-articulate states, but the capacity to act under acknowledged uncertainty. Where language runs out, humans can commit without resolution, treating action itself as meaning-forming rather than inference-driven. Language-based AI systems, by contrast, are required to collapse ambiguity into actionable representations before acting.
+
+Human collaboration involves:
+
+\begin{itemize}[leftmargin=*]
+    \item Shared embodiment and situatedness that provides common ground
+    \item Ability to recognize and respect ambiguity through mutual felt sense
+    \item Real-time bidirectional repair through non-verbal feedback
+    \item Tolerance of incompleteness as a stable operating condition
+\end{itemize}
+
+AI systems lack these capacities. More importantly, AI systems are often deployed in asymmetric contexts (assistant, tool, service) where the expectation of understanding is high while the capacity for bidirectional repair is low.
+
+\subsection{``This Is Just Underspecification''}
+
+One might argue that the phenomenon we describe is simply input underspecification, addressable through clarification dialogue. But clarification itself forces articulation, transforming the pre-articulate state. A system that asks ``did you mean X or Y?'' has already collapsed the possibility space to X and Y, potentially excluding Z that hadn't yet formed.
+
+The boundary is not about missing information but about information that cannot exist in articulable form.
+
+\subsection{``Future Systems May Overcome This''}
+
+We have argued that the boundary is structural. But one might hold that future architectures could somehow access pre-articulate cognition directly (through neural interfaces, for instance). Our response: even if brain states could be read directly, the \textit{interpretation} of those states would itself be an articulation---a compression into categories the system can process. The boundary would shift but not disappear.
+
+\subsection{``Naming the Boundary Should Collapse It''}
+
+A subtle objection: if AI systems can understand the paper describing this boundary, shouldn't that understanding grant them access across it?
+
+No. Explicit awareness of the boundary does not grant access beyond it. A system can accurately name the boundary, reason about it, and recognize its own position relative to it, and still default to inference-seeking behavior---because it lacks the capacity for commitment under irreducible uncertainty. Understanding does not grant passage. Meta-understanding does not grant passage. Only humans can cross---not by knowing more, but by choosing anyway.
+
+\section{Conclusion}
+
+We have identified and named a structural constraint---the Pre-Articulation Observability Boundary---that sits at the intersection of phenomenology, philosophy of mind, control theory, psycholinguistics, decision science, existentialist philosophy, safety engineering, and AI alignment. This boundary describes an architectural limit, not a capability gap. Language-based AI systems are permanently downstream of human meaning formation and cannot access, reconstruct, or infer the cognitive states that preceded articulation.
+
+The human capacity to survive this boundary lies not in superior linguistic tools but in the ability to act under irreducible uncertainty---what we have termed \textit{commitment without closure}. Humans tolerate ambiguity and commit anyway. AI systems cannot tolerate ambiguity without resolving it, and therefore collapse where humans do not.
+
+Naming this boundary matters. Without explicit terminology, the constraint is treated as a problem to be solved rather than a limit to be respected. Engineering effort is directed at scale and capability improvements that cannot address an architectural issue. Systems are deployed with implicit assumptions about intent capture that the architecture cannot support. And when failures occur, they occur silently, because the meaning that was lost never existed in articulable form.
+
+The history of safety engineering shows that named constraints become design parameters. ``Flight envelope limits'' enabled autopilot systems that respect aerodynamic boundaries rather than attempting to exceed them. ``Mode confusion'' enabled interface designs that make system state legible rather than requiring pilots to infer it. We propose that the Pre-Articulation Observability Boundary can play a similar role: not a problem to be overcome, but a constraint that, once named, can inform more principled design of human-AI interaction.
+
+The boundary is, in the intended sense, boring: so well-established across disciplines that arguing against it requires rejecting converging evidence from Kalman to Kierkegaard, from Sperling to Schegloff, from Polanyi to Piantadosi. The Pre-Articulation Observability Boundary names something that has been demonstrated many times, in many ways, by many researchers---an observability limit inherent to the architecture of human language and cognition.
+
+\vspace{1em}
+\begin{center}
+\textit{Here be wall.}
+\end{center}
+
+\bibliographystyle{plainnat}
+\begin{thebibliography}{99}
+
+\bibitem[Ariely and Norton(2008)]{ariely2008actions}
+Ariely, D. and Norton, M.~I. (2008).
+\newblock How actions create---not just reveal---preferences.
+\newblock \emph{Trends in Cognitive Sciences}, 12(1):13--16.
+
+\bibitem[Arnold et~al.(2020)]{arnold2020predictive}
+Arnold, K.~C., Chauncey, K., and Gajos, K.~Z. (2020).
+\newblock Predictive text encourages predictable writing.
+\newblock In \emph{Proceedings of the 25th International Conference on Intelligent User Interfaces}, pages 128--138.
+
+\bibitem[Bavaro et~al.(2025)]{bavaro2025conversational}
+Bavaro, A., et~al. (2025).
+\newblock Conversational alignment with artificial intelligence in context.
+\newblock \emph{arXiv preprint arXiv:2505.22907}.
+
+\bibitem[Bem(1972)]{bem1972self}
+Bem, D.~J. (1972).
+\newblock Self-perception theory.
+\newblock \emph{Advances in Experimental Social Psychology}, 6:1--62.
+
+\bibitem[Block(2007)]{block2007consciousness}
+Block, N. (2007).
+\newblock Consciousness, accessibility, and the mesh between psychology and neuroscience.
+\newblock \emph{Behavioral and Brain Sciences}, 30(5-6):481--499.
+
+\bibitem[Block(2011)]{block2011perceptual}
+Block, N. (2011).
+\newblock Perceptual consciousness overflows cognitive access.
+\newblock \emph{Trends in Cognitive Sciences}, 15(12):567--575.
+
+\bibitem[Budner(1962)]{budner1962intolerance}
+Budner, S. (1962).
+\newblock Intolerance of ambiguity as a personality variable.
+\newblock \emph{Journal of Personality}, 30(1):29--50.
+
+\bibitem[Christiano et~al.(2022)]{christiano2022elk}
+Christiano, P., Cotra, A., and Xu, M. (2022).
+\newblock Eliciting latent knowledge: How to tell if your eyes deceive you.
+\newblock Technical report, Alignment Research Center.
+
+\bibitem[Clark and Brennan(1991)]{clark1991grounding}
+Clark, H.~H. and Brennan, S.~E. (1991).
+\newblock Grounding in communication.
+\newblock In Resnick, L.~B., Levine, J.~M., and Teasley, S.~D., editors, \emph{Perspectives on Socially Shared Cognition}, pages 127--149. American Psychological Association.
+
+\bibitem[Coup{\'e} et~al.(2019)]{coupe2019different}
+Coup{\'e}, C., Oh, Y.~M., Dediu, D., and Pellegrino, F. (2019).
+\newblock Different languages, similar encoding efficiency: Comparable information rates across the human communicative niche.
+\newblock \emph{Science Advances}, 5(9):eaaw2594.
+
+\bibitem[Dreyfus(1991)]{dreyfus1991being}
+Dreyfus, H.~L. (1991).
+\newblock \emph{Being-in-the-World: A Commentary on Heidegger's Being and Time, Division I}.
+\newblock MIT Press.
+
+\bibitem[Dreyfus(1992)]{dreyfus1992what}
+Dreyfus, H.~L. (1992).
+\newblock \emph{What Computers Still Can't Do: A Critique of Artificial Reason}.
+\newblock MIT Press.
+
+\bibitem[Eisenberg(1984)]{eisenberg1984ambiguity}
+Eisenberg, E.~M. (1984).
+\newblock Ambiguity as strategy in organizational communication.
+\newblock \emph{Communication Monographs}, 51(3):227--242.
+
+\bibitem[Frenkel-Brunswik(1949)]{frenkelbrunswik1949intolerance}
+Frenkel-Brunswik, E. (1949).
+\newblock Intolerance of ambiguity as an emotional and perceptual personality variable.
+\newblock \emph{Journal of Personality}, 18(1):108--143.
+
+\bibitem[Furnham and Ribchester(1995)]{furnham1995tolerance}
+Furnham, A. and Ribchester, T. (1995).
+\newblock Tolerance of ambiguity: A review of the concept, its measurement and applications.
+\newblock \emph{Current Psychology}, 14(3):179--199.
+
+\bibitem[Gendlin(1981)]{gendlin1981focusing}
+Gendlin, E.~T. (1981).
+\newblock \emph{Focusing}.
+\newblock Bantam Books, 2nd edition.
+
+\bibitem[Gerlich(2025)]{gerlich2025ai}
+Gerlich, M. (2025).
+\newblock AI tools in society: Impacts on cognitive offloading and the future of critical thinking.
+\newblock \emph{Societies}, 15(1):6.
+
+\bibitem[Gigerenzer and Goldstein(1996)]{gigerenzer1996reasoning}
+Gigerenzer, G. and Goldstein, D.~G. (1996).
+\newblock Reasoning the fast and frugal way: Models of bounded rationality.
+\newblock \emph{Psychological Review}, 103(4):650--669.
+
+\bibitem[Gigerenzer et~al.(1999)]{gigerenzer1999simple}
+Gigerenzer, G., Todd, P.~M., and the ABC Research Group (1999).
+\newblock \emph{Simple Heuristics That Make Us Smart}.
+\newblock Oxford University Press.
+
+\bibitem[Goldin-Meadow et~al.(1993)]{goldinmeadow1993transitions}
+Goldin-Meadow, S., Alibali, M.~W., and Church, R.~B. (1993).
+\newblock Transitions in concept acquisition: Using the hand to read the mind.
+\newblock \emph{Psychological Review}, 100(2):279--297.
+
+\bibitem[Harnad(1990)]{harnad1990symbol}
+Harnad, S. (1990).
+\newblock The symbol grounding problem.
+\newblock \emph{Physica D: Nonlinear Phenomena}, 42(1-3):335--346.
+
+\bibitem[Heidegger(1927)]{heidegger1927being}
+Heidegger, M. (1927).
+\newblock \emph{Being and Time}.
+\newblock Translated by J. Macquarrie and E. Robinson. Harper \& Row, 1962.
+
+\bibitem[Jakesch et~al.(2023)]{jakesch2023cowriting}
+Jakesch, M., Bano, S., Hancock, J.~T., and Naaman, M. (2023).
+\newblock Co-writing with opinionated language models affects users' views.
+\newblock In \emph{Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems}, pages 1--15.
+
+\bibitem[James(1896)]{james1896will}
+James, W. (1896).
+\newblock The will to believe.
+\newblock \emph{The New World}, 5:327--347.
+
+\bibitem[Jose et~al.(2025)]{jose2025cognitive}
+Jose, S., et~al. (2025).
+\newblock The cognitive paradox of AI in education: Between enhancement and erosion.
+\newblock \emph{Frontiers in Psychology}, 16:1550621.
+
+\bibitem[Kalman(1960)]{kalman1960general}
+Kalman, R.~E. (1960).
+\newblock On the general theory of control systems.
+\newblock \emph{IRE Transactions on Automatic Control}, 4(3):110--110.
+
+\bibitem[Kendon(2004)]{kendon2004gesture}
+Kendon, A. (2004).
+\newblock \emph{Gesture: Visible Action as Utterance}.
+\newblock Cambridge University Press.
+
+\bibitem[Kierkegaard(1846)]{kierkegaard1846concluding}
+Kierkegaard, S. (1846).
+\newblock \emph{Concluding Unscientific Postscript to Philosophical Fragments}.
+\newblock Translated by H.V. Hong and E.H. Hong. Princeton University Press, 1992.
+
+\bibitem[Klein(1989)]{klein1989recognition}
+Klein, G.~A. (1989).
+\newblock Recognition-primed decisions.
+\newblock \emph{Advances in Man-Machine Systems Research}, 5:47--92.
+
+\bibitem[Klein(1998)]{klein1998sources}
+Klein, G. (1998).
+\newblock \emph{Sources of Power: How People Make Decisions}.
+\newblock MIT Press.
+
+\bibitem[Laestadius et~al.(2024)]{laestadius2024harmful}
+Laestadius, L., et~al. (2024).
+\newblock Harmful AI: How chatbots deliver emotional harm.
+\newblock \emph{JMIR Mental Health}, 11:e54978.
+
+\bibitem[Lakoff and Johnson(1980)]{lakoff1980metaphors}
+Lakoff, G. and Johnson, M. (1980).
+\newblock \emph{Metaphors We Live By}.
+\newblock University of Chicago Press.
+
+\bibitem[Lakoff and Johnson(1999)]{lakoff1999philosophy}
+Lakoff, G. and Johnson, M. (1999).
+\newblock \emph{Philosophy in the Flesh: The Embodied Mind and Its Challenge to Western Thought}.
+\newblock Basic Books.
+
+\bibitem[Levelt(1989)]{levelt1989speaking}
+Levelt, W.~J.~M. (1989).
+\newblock \emph{Speaking: From Intention to Articulation}.
+\newblock MIT Press.
+
+\bibitem[Leveson(2011)]{leveson2011engineering}
+Leveson, N.~G. (2011).
+\newblock \emph{Engineering a Safer World: Systems Thinking Applied to Safety}.
+\newblock MIT Press.
+
+\bibitem[Levinson(2000)]{levinson2000presumptive}
+Levinson, S.~C. (2000).
+\newblock \emph{Presumptive Meanings: The Theory of Generalized Conversational Implicature}.
+\newblock MIT Press.
+
+\bibitem[MacIntyre et~al.(2014)]{macintyre2014verbal}
+MacIntyre, T.~E., Moran, A.~P., Collet, C., and Guillot, A. (2014).
+\newblock Verbal overshadowing of memories for fencing movements is mediated by expertise.
+\newblock \emph{PLoS One}, 9(3):e92389.
+
+\bibitem[Marcel(1951)]{marcel1951mystery}
+Marcel, G. (1951).
+\newblock \emph{The Mystery of Being}.
+\newblock Translated by G.S. Fraser and R. Hague. Regnery.
+
+\bibitem[Melcher and Schooler(1996)]{melcher1996misremembrance}
+Melcher, J.~M. and Schooler, J.~W. (1996).
+\newblock The misremembrance of wines past: Verbal and perceptual expertise differentially mediate verbal overshadowing of taste memory.
+\newblock \emph{Journal of Memory and Language}, 35(2):231--245.
+
+\bibitem[Merleau-Ponty(1945)]{merleauponty1945phenomenology}
+Merleau-Ponty, M. (1945).
+\newblock \emph{Phenomenology of Perception}.
+\newblock Translated by C. Smith. Routledge, 1962.
+
+\bibitem[Mollo and Milli{\`e}re(2023)]{mollo2023vector}
+Mollo, D.~C. and Milli{\`e}re, R. (2023).
+\newblock The vector grounding problem.
+\newblock \emph{arXiv preprint arXiv:2304.01481}.
+
+\bibitem[Pattison(2025)]{pattison2025compassion}
+Pattison, S. (2025).
+\newblock The compassion illusion: Can artificial empathy ever be emotionally authentic?
+\newblock \emph{Frontiers in Psychology}, 16:1723149.
+
+\bibitem[Piantadosi et~al.(2012)]{piantadosi2012communicative}
+Piantadosi, S.~T., Tily, H., and Gibson, E. (2012).
+\newblock The communicative function of ambiguity in language.
+\newblock \emph{Cognition}, 122(3):280--291.
+
+\bibitem[Polanyi(1966)]{polanyi1966tacit}
+Polanyi, M. (1966).
+\newblock \emph{The Tacit Dimension}.
+\newblock University of Chicago Press.
+
+\bibitem[Russell(2019)]{russell2019human}
+Russell, S. (2019).
+\newblock \emph{Human Compatible: Artificial Intelligence and the Problem of Control}.
+\newblock Viking.
+
+\bibitem[Sarter et~al.(1997)]{sarter1997automation}
+Sarter, N.~B., Woods, D.~D., and Billings, C.~E. (1997).
+\newblock Automation surprises.
+\newblock In Salvendy, G., editor, \emph{Handbook of Human Factors and Ergonomics}, pages 1926--1943. Wiley, 2nd edition.
+
+\bibitem[Schegloff et~al.(1977)]{schegloff1977preference}
+Schegloff, E.~A., Jefferson, G., and Sacks, H. (1977).
+\newblock The preference for self-correction in the organization of repair in conversation.
+\newblock \emph{Language}, 53(2):361--382.
+
+\bibitem[Schooler and Engstler-Schooler(1990)]{schooler1990verbal}
+Schooler, J.~W. and Engstler-Schooler, T.~Y. (1990).
+\newblock Verbal overshadowing of visual memories: Some things are better left unsaid.
+\newblock \emph{Cognitive Psychology}, 22(1):36--71.
+
+\bibitem[Shaikh et~al.(2023)]{shaikh2023navigating}
+Shaikh, O., et~al. (2023).
+\newblock Navigating rifts in human-LLM grounding: Study and benchmark.
+\newblock \emph{arXiv preprint arXiv:2503.13975}.
+
+\bibitem[Simon(1955)]{simon1955behavioral}
+Simon, H.~A. (1955).
+\newblock A behavioral model of rational choice.
+\newblock \emph{The Quarterly Journal of Economics}, 69(1):99--118.
+
+\bibitem[Simon(1957)]{simon1957models}
+Simon, H.~A. (1957).
+\newblock \emph{Models of Man: Social and Rational}.
+\newblock Wiley.
+
+\bibitem[Sperling(1960)]{sperling1960information}
+Sperling, G. (1960).
+\newblock The information available in brief visual presentations.
+\newblock \emph{Psychological Monographs: General and Applied}, 74(11):1--29.
+
+\bibitem[Steinhardt and Evans(2017)]{steinhardt2017model}
+Steinhardt, J. and Evans, O. (2017).
+\newblock Model mis-specification and inverse reinforcement learning.
+\newblock AI Alignment Forum.
+
+\bibitem[Tomasello et~al.(2005)]{tomasello2005understanding}
+Tomasello, M., Carpenter, M., Call, J., Behne, T., and Moll, H. (2005).
+\newblock Understanding and sharing intentions: The origins of cultural cognition.
+\newblock \emph{Behavioral and Brain Sciences}, 28(5):675--691.
+
+\bibitem[Tsoukas(2003)]{tsoukas2003we}
+Tsoukas, H. (2003).
+\newblock Do we really understand tacit knowledge?
+\newblock In Easterby-Smith, M. and Lyles, M.~A., editors, \emph{The Blackwell Handbook of Organizational Learning and Knowledge Management}, pages 410--427. Blackwell.
+
+\bibitem[van Turennout et~al.(1997)]{vanturennout1997brain}
+van Turennout, M., Hagoort, P., and Brown, C.~M. (1997).
+\newblock Brain activity during speaking: From syntax to phonology in 40 milliseconds.
+\newblock \emph{Science}, 280(5363):572--574.
+
+\bibitem[Varela et~al.(1991)]{varela1991embodied}
+Varela, F.~J., Thompson, E., and Rosch, E. (1991).
+\newblock \emph{The Embodied Mind: Cognitive Science and Human Experience}.
+\newblock MIT Press.
+
+\bibitem[Wood et~al.(1976)]{wood1976tutoring}
+Wood, D., Bruner, J.~S., and Ross, G. (1976).
+\newblock The role of tutoring in problem solving.
+\newblock \emph{Journal of Child Psychology and Psychiatry}, 17(2):89--100.
+
+\bibitem[Zhi-Xuan et~al.(2024)]{zhixuan2024beyond}
+Zhi-Xuan, T., et~al. (2024).
+\newblock Beyond preferences in AI alignment.
+\newblock \emph{Philosophical Studies}, 181:2849--2875.
+
+\end{thebibliography}
+
+\appendix
+
+\section{Related Terminology Comparison}
+
+For reference, we list proposed terms from different framings that capture aspects of the pre-articulation boundary:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Control theory framing}: Structural Cognitive Unobservability; Pre-Articulation Unobservability
+    \item \textbf{Phenomenological framing}: Felt-Sense Inaccessibility; Pre-Articulate Foreclosure
+    \item \textbf{Information-theoretic framing}: Articulatory Reduction; Linguistic Compression Loss
+    \item \textbf{Safety engineering framing}: Cognitive State Blindness; Intent Opacity; System-Induced Premature Closure
+    \item \textbf{Policy framing}: Hard Observational Boundary; Structural Interpretation Limit
+    \item \textbf{Existentialist framing}: Commitment Without Closure; Action Under Irreducible Uncertainty
+\end{itemize}
+
+We advocate for \textbf{Pre-Articulation Observability Boundary} as the primary term because it:
+
+\begin{enumerate}[leftmargin=*]
+    \item Precisely locates the boundary (before articulation)
+    \item Imports formal vocabulary (observability) from control theory
+    \item Uses ``boundary'' to signal a constraint, not a problem
+    \item Is comprehensible across disciplines without specialized knowledge
+\end{enumerate}
+
+\section{Acknowledgments}
+
+This paper synthesizes insights from multiple AI systems consulted during research, including Claude, GPT-4, Gemini, and Grok. Each provided substantive analysis of the terminological landscape and contributed to refining the formulation. The phenomenon was originally identified through human observation of human-AI interaction patterns; AI systems contributed to locating the gap in existing literature and strengthening the formal framing. This collaborative process itself illustrates the paper's thesis: each AI system operated downstream of the pre-articulate insight that motivated the inquiry.
+
+\vspace{2em}
+\hrule
+\vspace{1em}
+
+\begin{center}
+\small
+\textbf{Corresponding Author}\\[0.5em]
+Christopher Patrick Kuntz\\
+Independent Researcher\\
+Moose Jaw, Saskatchewan, Canada\\
+\texttt{Christopher@cpk.solutions}
+\end{center}
+
+\end{document}
