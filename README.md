@@ -71,6 +71,22 @@ This work is released for cross-disciplinary review and comment. It is not submi
 
 ---
 
+## Full Monograph
+
+This position paper is extracted from Chapter 3 of a comprehensive research monograph:
+
+**[Structural Authority-Proxy Risk in Human-AI Interaction](https://github.com/ChristopherPatrickKuntz/ai-developmental-standards-monograph)**  
+*A Standards-Alignment Analysis for Developmental Populations*
+
+The full monograph (220 pages, 278 references) develops the complete theoretical framework, including:
+- Differential Friction Conditioning (DFC) mechanism
+- 50 years of Self-Determination Theory evidence
+- Historical pattern analysis
+- Policy recommendations
+- UIVP intervention hypothesis
+
+---
+
 ## Author
 
 Christopher Patrick Kuntz  
