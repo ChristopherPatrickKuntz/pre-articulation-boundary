@@ -55,7 +55,8 @@ Unlike capability gaps addressable through scale or training, this boundary is a
   author={Kuntz, Christopher Patrick},
   year={2025},
   month={December},
-  note={Position paper for cross-disciplinary review}
+  note={Position paper for cross-disciplinary review},
+  url={https://github.com/ChristopherPatrickKuntz/pre-articulation-boundary}
 }
 ```
 

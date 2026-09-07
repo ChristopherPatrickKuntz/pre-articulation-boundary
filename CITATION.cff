@@ -5,7 +5,6 @@ authors:
     given-names: "Christopher Patrick"
     email: "christopher@cpk.solutions"
 title: "The Pre-Articulation Observability Boundary: A Structural Constraint on Language-Based AI Systems"
-type: article
 date-released: 2025-12-17
 keywords:
   - ai-safety
@@ -15,3 +14,16 @@ keywords:
   - control-theory
   - cognitive-science
 license: CC-BY-4.0
+url: https://github.com/ChristopherPatrickKuntz/pre-articulation-boundary
+preferred-citation:
+  type: article
+  title: "The Pre-Articulation Observability Boundary: A Structural Constraint on Language-Based AI Systems"
+  authors:
+    - family-names: "Kuntz"
+      given-names: "Christopher Patrick"
+      email: "christopher@cpk.solutions"
+  year: 2025
+  month: 12
+  status: preprint
+  notes: "Position paper for cross-disciplinary review"
+  url: https://github.com/ChristopherPatrickKuntz/pre-articulation-boundary
